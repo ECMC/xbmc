@@ -1,0 +1,12 @@
+SRCS=GUIDialogContactInfo.cpp \
+     GUIViewStateContacts.cpp \
+     ContactDatabase.cpp \
+     Contact.cpp \
+     ContactDbUrl.cpp \
+     ContactInfoLoader.cpp \
+     ContactThumbLoader.cpp \
+     
+LIB=contacts.a
+
+include ../../Makefile.include
+-include $(patsubst %.cpp,%.P,$(patsubst %.c,%.P,$(SRCS)))

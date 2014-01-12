@@ -216,7 +216,6 @@ void CGUIWindowMusicSongs::OnPrepareFileItems(CFileItemList &items)
 void CGUIWindowMusicSongs::UpdateButtons()
 {
   CGUIWindowMusicBase::UpdateButtons();
-
   bool bIsPlaying = g_application.m_pPlayer->IsPlayingAudio();
   bool bCanRecord = false;
   bool bIsRecording = false;
@@ -294,7 +293,7 @@ void CGUIWindowMusicSongs::GetContextButtons(int itemNumber, CContextButtons &bu
     bool inPlaylists = m_vecItems->GetPath().Equals(CUtil::MusicPlaylistsLocation()) ||
                        m_vecItems->GetPath().Equals("special://musicplaylists/");
 
-    if (m_vecItems->IsVirtualDirectoryRoot())
+    if (m_vecItems->IsVirtualDirectoryRoot() || m_vecItems->GetPath() == "sources://music/")
     {
       // get the usual music shares, and anything for all media windows
       CGUIDialogContextMenu::GetContextButtons("music", item, buttons);
@@ -387,16 +386,13 @@ bool CGUIWindowMusicSongs::OnContextButton(int itemNumber, CONTEXT_BUTTON button
   CFileItemPtr item;
   if (itemNumber >= 0 && itemNumber < m_vecItems->Size())
     item = m_vecItems->Get(itemNumber);
-  if ( m_vecItems->IsVirtualDirectoryRoot() && item)
+  if (CGUIDialogContextMenu::OnContextButton("music", item, button))
   {
-    if (CGUIDialogContextMenu::OnContextButton("music", item, button))
-    {
-      if (button == CONTEXT_BUTTON_REMOVE_SOURCE)
-        OnRemoveSource(itemNumber);
+    if (button == CONTEXT_BUTTON_REMOVE_SOURCE)
+      OnRemoveSource(itemNumber);
 
-      Update("");
-      return true;
-    }
+    Update("");
+    return true;
   }
 
   switch (button)

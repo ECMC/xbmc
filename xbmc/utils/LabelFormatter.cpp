@@ -25,14 +25,16 @@
 #include "Util.h"
 #include "video/VideoInfoTag.h"
 #include "music/tags/MusicInfoTag.h"
-#include "pictures/PictureInfoTag.h"
+#include "pictures/tags/PictureInfoTag.h"
+#include "contacts/tags/ContactInfoTag.h"
 #include "FileItem.h"
 #include "StringUtils.h"
 #include "URIUtils.h"
 #include "guilib/LocalizeStrings.h"
 
 using namespace MUSIC_INFO;
-
+using namespace CONTACT_INFO;
+using namespace PICTURE_INFO;
 /* LabelFormatter
  * ==============
  *
@@ -153,6 +155,7 @@ CStdString CLabelFormatter::GetMaskContent(const CMaskString &mask, const CFileI
   const CMusicInfoTag *music = item->GetMusicInfoTag();
   const CVideoInfoTag *movie = item->GetVideoInfoTag();
   const CPictureInfoTag *pic = item->GetPictureInfoTag();
+  const CContactInfoTag *contact = item->GetContactInfoTag();
   CStdString value;
   switch (mask.m_content)
   {
@@ -336,7 +339,7 @@ void CLabelFormatter::SplitMask(unsigned int label, const CStdString &mask)
   { // we've found a match
     m_staticContent[label].push_back(work.Left(findStart));
     m_dynamicContent[label].push_back(CMaskString("", 
-          reg.GetReplaceString("\\1")[0], ""));
+          reg.GetMatch(1)[0], ""));
     work = work.Mid(findStart + reg.GetFindLen());
   }
   m_staticContent[label].push_back(work);
@@ -358,11 +361,11 @@ void CLabelFormatter::AssembleMask(unsigned int label, const CStdString& mask)
   while ((findStart = reg.RegFind(work.c_str())) >= 0)
   { // we've found a match for a pre/postfixed string
     // send anything
-    SplitMask(label, work.Left(findStart) + reg.GetReplaceString("\\1").c_str());
+    SplitMask(label, work.Left(findStart) + reg.GetMatch(1).c_str());
     m_dynamicContent[label].push_back(CMaskString(
-            reg.GetReplaceString("\\2"),
-            reg.GetReplaceString("\\4")[0],
-            reg.GetReplaceString("\\5")));
+            reg.GetMatch(2),
+            reg.GetMatch(4)[0],
+            reg.GetMatch(5)));
     work = work.Mid(findStart + reg.GetFindLen());
   }
   SplitMask(label, work);

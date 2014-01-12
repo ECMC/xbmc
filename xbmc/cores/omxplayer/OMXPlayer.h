@@ -345,7 +345,7 @@ protected:
   std::string  m_mimetype;  // hold a hint to what content file contains (mime type)
   ECacheState  m_caching;
   CFileItem    m_item;
-  unsigned int m_iChannelEntryTimeOut;
+  XbmcThreads::EndTime m_ChannelEntryTimeOut;
 
 
   COMXCurrentStream m_CurrentAudio;
@@ -476,6 +476,9 @@ protected:
     double  cache_offset;  // percentage of file ahead of current position
   } m_State, m_StateInput;
   CCriticalSection m_StateSection;
+
+  CEvent m_ready;
+  CCriticalSection m_critStreamSection; // need to have this lock when switching streams (audio / video)
 
   CEvent m_ready;
   CCriticalSection m_critStreamSection; // need to have this lock when switching streams (audio / video)

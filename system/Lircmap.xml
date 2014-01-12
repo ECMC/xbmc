@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- This file contains the mapping of LIRC keys to XBMC keys used in Keymap.xml  -->
 <!--                                                                              -->
 <!-- How to add remotes                                                           -->
@@ -94,6 +95,8 @@
 		<eight>KEY_8</eight>
 		<nine>KEY_9</nine>
 		<zero>KEY_0</zero>
+		<star>KEY_NUMERIC_STAR</star>
+		<hash>KEY_NUMERIC_POUND</hash>
 		<red>KEY_RED</red>
 		<green>KEY_GREEN</green>
 		<yellow>KEY_YELLOW</yellow>

@@ -36,7 +36,7 @@
 #include "utils/SystemInfo.h"
 #include "guilib/GUITextBox.h"
 #include "pictures/GUIWindowSlideShow.h"
-#include "pictures/PictureInfoTag.h"
+#include "pictures/tags/PictureInfoTag.h"
 #include "music/tags/MusicInfoTag.h"
 #include "guilib/IGUIContainer.h"
 #include "guilib/GUIWindowManager.h"
@@ -208,6 +208,7 @@ const infomap player_labels[] =  {{ "hasmedia",         PLAYER_HAS_MEDIA },     
                                   { "starrating",       PLAYER_STAR_RATING },
                                   { "folderpath",       PLAYER_PATH },
                                   { "filenameandpath",  PLAYER_FILEPATH },
+                                  { "filename",         PLAYER_FILENAME },
                                   { "isinternetstream", PLAYER_ISINTERNETSTREAM },
                                   { "pauseenabled",     PLAYER_CAN_PAUSE },
                                   { "seekenabled",      PLAYER_CAN_SEEK }};
@@ -381,6 +382,7 @@ const infomap videoplayer[] =    {{ "title",            VIDEOPLAYER_TITLE },
                                   { "videoaspect",      VIDEOPLAYER_VIDEO_ASPECT },
                                   { "audiocodec",       VIDEOPLAYER_AUDIO_CODEC },
                                   { "audiochannels",    VIDEOPLAYER_AUDIO_CHANNELS },
+                                  { "audiolanguage",    VIDEOPLAYER_AUDIO_LANG },
                                   { "hasteletext",      VIDEOPLAYER_HASTELETEXT },
                                   { "lastplayed",       VIDEOPLAYER_LASTPLAYED },
                                   { "playcount",        VIDEOPLAYER_PLAYCOUNT },
@@ -1024,7 +1026,7 @@ int CGUIInfoManager::TranslateSingleString(const CStdString &strCondition)
         if (prop.name == slideshow[i].str)
           return slideshow[i].val;
       }
-      return CPictureInfoTag::TranslateString(prop.name);
+      return PICTURE_INFO::CPictureInfoTag::TranslateString(prop.name);
     }
     else if (cat.name == "container")
     {
@@ -1183,12 +1185,20 @@ int CGUIInfoManager::TranslateSingleString(const CStdString &strCondition)
       }
     }
   }
-  else if (info.size() == 3)
+  else if (info.size() == 3 || info.size() == 4)
   {
     if (info[0].name == "system" && info[1].name == "platform")
     { // TODO: replace with a single system.platform
       CStdString platform = info[2].name;
-      if (platform == "linux") return SYSTEM_PLATFORM_LINUX;
+      if (platform == "linux")
+      {
+        if (info.size() == 4)
+        {
+          CStdString device = info[3].name;
+          if (device == "raspberrypi") return SYSTEM_PLATFORM_LINUX_RASPBERRY_PI;
+        }
+        else return SYSTEM_PLATFORM_LINUX;
+      }
       else if (platform == "windows") return SYSTEM_PLATFORM_WINDOWS;
       else if (platform == "darwin")  return SYSTEM_PLATFORM_DARWIN;
       else if (platform == "osx")  return SYSTEM_PLATFORM_DARWIN_OSX;
@@ -1404,6 +1414,7 @@ CStdString CGUIInfoManager::GetLabel(int info, int contextWindow, CStdString *fa
       strLabel = GetDuration(TIME_FORMAT_HH_MM);
     break;
   case PLAYER_PATH:
+  case PLAYER_FILENAME:
   case PLAYER_FILEPATH:
     if (m_currentFile)
     {
@@ -1422,6 +1433,8 @@ CStdString CGUIInfoManager::GetLabel(int info, int contextWindow, CStdString *fa
         strLabel = URIUtils::GetParentPath(strLabel);
       strLabel = URIUtils::GetParentPath(strLabel);
     }
+    else if (info == PLAYER_FILENAME)
+      strLabel = URIUtils::GetFileName(strLabel);
     break;
   case PLAYER_TITLE:
     {
@@ -1554,6 +1567,14 @@ CStdString CGUIInfoManager::GetLabel(int info, int contextWindow, CStdString *fa
     {
       UpdateAVInfo();
       strLabel.Format("%i", m_audioInfo.channels);
+    }
+    break;
+  case VIDEOPLAYER_AUDIO_LANG:
+    if(g_application.m_pPlayer->IsPlaying())
+    {
+      SPlayerAudioStreamInfo info;
+      g_application.m_pPlayer->GetAudioStreamInfo(CMediaSettings::Get().GetCurrentVideoSettings().m_AudioStream, info);
+      strLabel = info.language;
     }
     break;
   case VIDEOPLAYER_STEREOSCOPIC_MODE:
@@ -2198,6 +2219,12 @@ bool CGUIInfoManager::GetBool(int condition1, int contextWindow, const CGUIListI
 #else
     bReturn = false;
 #endif
+  else if (condition == SYSTEM_PLATFORM_LINUX_RASPBERRY_PI)
+#if defined(TARGET_RASPBERRY_PI)
+    bReturn = true;
+#else
+    bReturn = false;
+#endif
   else if (condition == SYSTEM_MEDIA_DVD)
     bReturn = g_mediaManager.IsDiscInDrive();
 #ifdef HAS_DVD_DRIVE
@@ -2548,9 +2575,11 @@ bool CGUIInfoManager::GetBool(int condition1, int contextWindow, const CGUIListI
       }
     }
   }
+     
   if (condition1 < 0)
     bReturn = !bReturn;
   return bReturn;
+  
 }
 
 /// \brief Examines the multi information sent and returns true or false accordingly.
@@ -3068,6 +3097,7 @@ CStdString CGUIInfoManager::GetMultiInfoLabel(const GUIInfo &info, int contextWi
       strTime.Format("%s (%ix)", GetCurrentPlayTime((TIME_FORMAT)info.GetData1()).c_str(), g_application.m_pPlayer->GetPlaySpeed());
     else
       strTime = GetCurrentPlayTime();
+    
     return strTime;
   }
   else if (info.m_info == PLAYER_DURATION)
@@ -3197,6 +3227,7 @@ CStdString CGUIInfoManager::GetMultiInfoLabel(const GUIInfo &info, int contextWi
 /// \brief Obtains the filename of the image to show from whichever subsystem is needed
 CStdString CGUIInfoManager::GetImage(int info, int contextWindow, CStdString *fallback)
 {
+  
   if (info >= CONDITIONAL_LABEL_START && info <= CONDITIONAL_LABEL_END)
     return GetSkinVariableString(info, true);
 
@@ -3269,6 +3300,7 @@ CStdString CGUIInfoManager::GetImage(int info, int contextWindow, CStdString *fa
     }
   }
   return GetLabel(info, contextWindow, fallback);
+  
 }
 
 CStdString CGUIInfoManager::GetDate(bool bNumbersOnly)
@@ -3323,6 +3355,7 @@ CStdString CGUIInfoManager::LocalizeTime(const CDateTime &time, TIME_FORMAT form
 
 CStdString CGUIInfoManager::GetDuration(TIME_FORMAT format) const
 {
+
   if (g_application.m_pPlayer->IsPlayingAudio() && m_currentFile->HasMusicInfoTag())
   {
     const CMusicInfoTag& tag = *m_currentFile->GetMusicInfoTag();
@@ -3334,6 +3367,7 @@ CStdString CGUIInfoManager::GetDuration(TIME_FORMAT format) const
   unsigned int iTotal = (unsigned int)g_application.GetTotalTime();
   if (iTotal > 0)
     return StringUtils::SecondsToTimeString(iTotal, format);
+  
   return "";
 }
 
@@ -3639,7 +3673,7 @@ CStdString CGUIInfoManager::GetVideoLabel(int item)
 
     switch (item)
     {
-    /* Now playing infos */
+    // Now playing infos
     case VIDEOPLAYER_ORIGINALTITLE:
       return tag->GetEPGNow(epgTag) ?
           epgTag.Title() :
@@ -3657,7 +3691,7 @@ CStdString CGUIInfoManager::GetVideoLabel(int item)
     case VIDEOPLAYER_ENDTIME:
       return tag->GetEPGNow(epgTag) ? epgTag.EndAsLocalTime().GetAsLocalizedTime("", false) : CDateTime::GetCurrentDateTime().GetAsLocalizedTime("", false);
 
-    /* Next playing infos */
+    // Next playing infos
     case VIDEOPLAYER_NEXT_TITLE:
       return tag->GetEPGNext(epgTag) ?
           epgTag.Title() :
@@ -3691,7 +3725,7 @@ CStdString CGUIInfoManager::GetVideoLabel(int item)
       }
       break;
 
-    /* General channel infos */
+    // General channel infos
     case VIDEOPLAYER_CHANNEL_NAME:
       return tag->ChannelName();
     case VIDEOPLAYER_CHANNEL_NUMBER:
@@ -3999,7 +4033,6 @@ void CGUIInfoManager::SetCurrentMovie(CFileItem &item)
       SetCurrentSong(item);
       return;
     }
-
     // else its a video
     if (!g_application.m_strPlayListFile.IsEmpty())
     {
@@ -4278,7 +4311,6 @@ CStdString CGUIInfoManager::GetItemLabel(const CFileItem *item, int info, CStdSt
     CStdString property = m_listitemProperties[info - LISTITEM_PROPERTY_START];
     return item->GetProperty(property).asString();
   }
-
   if (info >= LISTITEM_PICTURE_START && info <= LISTITEM_PICTURE_END && item->HasPictureInfoTag())
     return item->GetPictureInfoTag()->GetInfo(picture_slide_map[info - LISTITEM_PICTURE_START]);
 
