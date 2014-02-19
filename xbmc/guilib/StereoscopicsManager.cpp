@@ -103,6 +103,7 @@ std::string CStereoscopicsManager::DetectStereoModeByString(const std::string &n
   CStdString searchString(needle);
   CStdStringArray tags;
   StringUtils::ToUpper(searchString);
+
   CStdString tag( g_advancedSettings.m_stereoscopicflags_sbs );
   if (stereoMode.empty() && !tag.IsEmpty())
   {
@@ -120,6 +121,7 @@ std::string CStereoscopicsManager::DetectStereoModeByString(const std::string &n
     if (StringUtils::ContainsKeyword(searchString, tags))
       stereoMode = "top_bottom";
   }
+
   if (stereoMode.empty())
     stereoMode = "mono";
 

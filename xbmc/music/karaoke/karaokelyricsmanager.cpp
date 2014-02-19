@@ -135,6 +135,7 @@ void CKaraokeLyricsManager::Stop()
 void CKaraokeLyricsManager::ProcessSlow()
 {
   CSingleLock lock (m_CritSection);
+
   if ( g_application.m_pPlayer->IsPlaying() )
   {
     if ( m_karaokeSongPlaying )
@@ -142,6 +143,7 @@ void CKaraokeLyricsManager::ProcessSlow()
 
     return;
   }
+
   if ( !m_karaokeSongPlayed || !CSettings::Get().GetBool("karaoke.autopopupselector") )
     return;
 

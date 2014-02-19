@@ -1,6 +1,6 @@
 /*
  *      Copyright (C) 2005-2013 Team XBMC
- *      http://www.xbmc.org
+ *      http://xbmc.org
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,11 +19,9 @@
  */
 
 #include "PictureInfoLoader.h"
-#include "tags/PictureInfoTag.h"
+#include "PictureInfoTag.h"
 #include "settings/Settings.h"
 #include "FileItem.h"
-
-using namespace PICTURE_INFO;
 
 CPictureInfoLoader::CPictureInfoLoader()
 {
@@ -52,15 +50,21 @@ void CPictureInfoLoader::OnLoaderStart()
 
 bool CPictureInfoLoader::LoadItem(CFileItem* pItem)
 {
-  if (m_pProgressCallback && !pItem->m_bIsFolder)
-    m_pProgressCallback->SetProgressAdvance();
+  bool result  = LoadItemCached(pItem);
+       result |= LoadItemLookup(pItem);
 
+  return result;
+}
+
+bool CPictureInfoLoader::LoadItemCached(CFileItem* pItem)
+{
   if (!pItem->IsPicture() || pItem->IsZIP() || pItem->IsRAR() || pItem->IsCBR() || pItem->IsCBZ() || pItem->IsInternetStream() || pItem->IsVideo())
     return false;
 
   if (pItem->HasPictureInfoTag())
     return true;
-  // first check the cached item
+
+  // Check the cached item
   CFileItemPtr mapItem = (*m_mapFileItems)[pItem->GetPath()];
   if (mapItem && mapItem->m_dateTime==pItem->m_dateTime && mapItem->HasPictureInfoTag())
   { // Query map if we previously cached the file on HD
@@ -69,11 +73,26 @@ bool CPictureInfoLoader::LoadItem(CFileItem* pItem)
     return true;
   }
 
+  return true;
+}
+
+bool CPictureInfoLoader::LoadItemLookup(CFileItem* pItem)
+{
+  if (m_pProgressCallback && !pItem->m_bIsFolder)
+    m_pProgressCallback->SetProgressAdvance();
+
+  if (!pItem->IsPicture() || pItem->IsZIP() || pItem->IsRAR() || pItem->IsCBR() || pItem->IsCBZ() || pItem->IsInternetStream() || pItem->IsVideo())
+    return false;
+
+  if (pItem->HasPictureInfoTag())
+    return false;
+
   if (m_loadTags)
   { // Nothing found, load tag from file
     pItem->GetPictureInfoTag()->Load(pItem->GetPath());
     m_tagReads++;
   }
+
   return true;
 }
 

@@ -67,6 +67,7 @@ void CGUIDialogSeekBar::FrameMove()
     Close(true);
     return;
   }
+
   // update controls
   if (!g_application.GetSeekHandler()->InProgress() && !g_infoManager.m_performingSeek)
   { // position the bar at our current time

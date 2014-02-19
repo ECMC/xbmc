@@ -107,12 +107,14 @@ bool CGUIWindowVideoPlaylist::OnMessage(CGUIMessage& message)
         m_iLastControl = CONTROL_BTNVIEWASICONS;
         SET_CONTROL_FOCUS(m_iLastControl, 0);
       }
+
       if (g_application.m_pPlayer->IsPlayingVideo() && g_playlistPlayer.GetCurrentPlaylist() == PLAYLIST_VIDEO)
       {
         int iSong = g_playlistPlayer.GetCurrentSong();
         if (iSong >= 0 && iSong <= (int)m_vecItems->Size())
           m_viewControl.SetSelectedItem(iSong);
       }
+
       return true;
     }
     break;
@@ -234,6 +236,7 @@ bool CGUIWindowVideoPlaylist::MoveCurrentPlayListItem(int iItem, int iAction, bo
   if ((g_playlistPlayer.GetCurrentPlaylist() == PLAYLIST_VIDEO) && (g_application.m_pPlayer->IsPlayingVideo()) &&
     ((g_playlistPlayer.GetCurrentSong() == iSelected) || (g_playlistPlayer.GetCurrentSong() == iNew)))
     bFixCurrentSong = true;
+
   CPlayList& playlist = g_playlistPlayer.GetPlaylist(PLAYLIST_VIDEO);
   if (playlist.Swap(iSelected, iNew))
   {
@@ -281,6 +284,7 @@ void CGUIWindowVideoPlaylist::UpdateButtons()
     CONTROL_ENABLE(CONTROL_BTNPLAY);
     CONTROL_ENABLE(CONTROL_BTNSHUFFLE);
     CONTROL_ENABLE(CONTROL_BTNREPEAT);
+
     if (g_application.m_pPlayer->IsPlayingVideo() && g_playlistPlayer.GetCurrentPlaylist() == PLAYLIST_VIDEO)
     {
       CONTROL_ENABLE(CONTROL_BTNNEXT);
@@ -291,7 +295,6 @@ void CGUIWindowVideoPlaylist::UpdateButtons()
       CONTROL_DISABLE(CONTROL_BTNNEXT);
       CONTROL_DISABLE(CONTROL_BTNPREVIOUS);
     }
-
   }
   else
   {
@@ -348,6 +351,7 @@ void CGUIWindowVideoPlaylist::RemovePlayListItem(int iItem)
   if (g_playlistPlayer.GetCurrentPlaylist() == PLAYLIST_VIDEO && g_application.m_pPlayer->IsPlayingVideo()
       && g_playlistPlayer.GetCurrentSong() == iItem)
     return ;
+
   g_playlistPlayer.Remove(PLAYLIST_VIDEO, iItem);
 
   Refresh();

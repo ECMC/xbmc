@@ -169,9 +169,6 @@ public:
 #ifdef HAS_LIBSTAGEFRIGHT
   virtual void         AddProcessor(CStageFrightVideo* stf, EGLImageKHR eglimg, int index);
 #endif
-#ifdef HAS_IMXVPU
-  virtual void         AddProcessor(CDVDVideoCodecIMX *imx,  int index);
-#endif
 #if defined(TARGET_ANDROID)
   // mediaCodec
   virtual void         AddProcessor(CDVDMediaCodecInfo *mediacodec, int index);
@@ -279,9 +276,6 @@ protected:
 #endif
 #ifdef HAVE_VIDEOTOOLBOXDECODER
     struct __CVBuffer *cvBufferRef;
-#endif
-#ifdef HAS_IMXVPU
-    CDVDVideoCodecIMX *imx;
 #endif
 #ifdef HAS_LIBSTAGEFRIGHT
     CStageFrightVideo* stf;

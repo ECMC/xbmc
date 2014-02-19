@@ -17,10 +17,11 @@
  *  <http://www.gnu.org/licenses/>.
  *
  */
-#include "EGLNativeTypeIMX.h"
+
 #include "system.h"
 
 #ifdef HAS_EGL
+
 #include "utils/log.h"
 #include "EGLNativeTypeAndroid.h"
 #include "EGLNativeTypeAmlogic.h"
@@ -82,8 +83,7 @@ bool CEGLWrapper::Initialize(const std::string &implementation)
   if ((nativeGuess = CreateEGLNativeType<CEGLNativeTypeWayland>(implementation)) ||
       (nativeGuess = CreateEGLNativeType<CEGLNativeTypeAndroid>(implementation)) ||
       (nativeGuess = CreateEGLNativeType<CEGLNativeTypeAmlogic>(implementation)) ||
-      (nativeGuess = CreateEGLNativeType<CEGLNativeTypeRaspberryPI>(implementation)) ||
-      (nativeGuess = CreateEGLNativeType<CEGLNativeTypeIMX>(implementation)))
+      (nativeGuess = CreateEGLNativeType<CEGLNativeTypeRaspberryPI>(implementation)))
   {
     m_nativeTypes = nativeGuess;
 

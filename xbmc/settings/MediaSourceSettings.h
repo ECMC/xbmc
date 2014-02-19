@@ -64,7 +64,6 @@ private:
 
   VECSOURCES m_programSources;
   VECSOURCES m_pictureSources;
-  VECSOURCES m_contactSources;
   VECSOURCES m_fileSources;
   VECSOURCES m_musicSources;
   VECSOURCES m_videoSources;
@@ -72,6 +71,5 @@ private:
   std::string m_defaultProgramSource;
   std::string m_defaultMusicSource;
   std::string m_defaultPictureSource;
-  std::string m_defaultContactSource;
   std::string m_defaultFileSource;
 };

@@ -480,9 +480,6 @@ protected:
   CEvent m_ready;
   CCriticalSection m_critStreamSection; // need to have this lock when switching streams (audio / video)
 
-  CEvent m_ready;
-  CCriticalSection m_critStreamSection; // need to have this lock when switching streams (audio / video)
-
   CEdl m_Edl;
 
   struct SEdlAutoSkipMarkers {

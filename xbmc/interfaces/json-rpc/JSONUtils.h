@@ -180,8 +180,6 @@ namespace JSONRPC
         sortBy = SortByBitrate;
       else if (method.Equals("random"))
         sortBy = SortByRandom;
-      else if (method.Equals("takenon"))
-        sortBy = SortByDateTaken;
       else
         return false;
 

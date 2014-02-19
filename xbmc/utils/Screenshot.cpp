@@ -112,6 +112,7 @@ bool CScreenshotSurface::capture()
   g_graphicsContext.Unlock();
 
 #elif defined(HAS_GL) || defined(HAS_GLES)
+
   g_graphicsContext.BeginPaint();
   if (g_application.m_pPlayer->IsPlayingVideo())
   {

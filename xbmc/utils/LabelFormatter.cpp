@@ -25,16 +25,14 @@
 #include "Util.h"
 #include "video/VideoInfoTag.h"
 #include "music/tags/MusicInfoTag.h"
-#include "pictures/tags/PictureInfoTag.h"
-#include "contacts/tags/ContactInfoTag.h"
+#include "pictures/PictureInfoTag.h"
 #include "FileItem.h"
 #include "StringUtils.h"
 #include "URIUtils.h"
 #include "guilib/LocalizeStrings.h"
 
 using namespace MUSIC_INFO;
-using namespace CONTACT_INFO;
-using namespace PICTURE_INFO;
+
 /* LabelFormatter
  * ==============
  *
@@ -155,7 +153,6 @@ CStdString CLabelFormatter::GetMaskContent(const CMaskString &mask, const CFileI
   const CMusicInfoTag *music = item->GetMusicInfoTag();
   const CVideoInfoTag *movie = item->GetVideoInfoTag();
   const CPictureInfoTag *pic = item->GetPictureInfoTag();
-  const CContactInfoTag *contact = item->GetContactInfoTag();
   CStdString value;
   switch (mask.m_content)
   {

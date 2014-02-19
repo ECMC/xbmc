@@ -1,7 +1,7 @@
 #pragma once
 /*
  *      Copyright (C) 2005-2013 Team XBMC
- *      http://www.xbmc.org
+ *      http://xbmc.org
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@ enum ERecentlyAddedFlag
 {
   Audio = 0x1,
   Video = 0x2,
-  Picture = 0x3,
   Totals = 0x4
 };
 
@@ -33,9 +32,7 @@ class CRecentlyAddedJob : public CJob
 {
 public:
   CRecentlyAddedJob(int flag);
-  bool UpdateMovies();
-  bool UpdateVideos();
-  bool UpdatePicture();
+  bool UpdateVideo();
   bool UpdateMusic();
   bool UpdateTotal();
   virtual bool DoWork();

@@ -20,10 +20,6 @@
 
 //#define DEBUG_VERBOSE 1
 
-#ifdef HAS_IMXVPU
-#include <linux/mxcfb.h>
-#endif
-
 #include "system.h"
 #if (defined HAVE_CONFIG_H) && (!defined TARGET_WINDOWS)
   #include "config.h"
@@ -67,11 +63,6 @@
 #ifdef TARGET_DARWIN_IOS
 #include "osx/DarwinUtils.h"
 #endif
-
-#ifdef HAS_IMXVPU
-#include "DVDCodecs/Video/DVDVideoCodecIMX.h"
-#endif
-
 #if defined(HAS_LIBSTAGEFRIGHT)
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
@@ -109,10 +100,6 @@ CLinuxRendererGLES::YUVBUFFER::YUVBUFFER()
 #if defined(TARGET_ANDROID)
   mediacodec = NULL;
 #endif
-#ifdef HAS_IMXVPU
-  imx = NULL;
-#endif
-
 }
 
 CLinuxRendererGLES::YUVBUFFER::~YUVBUFFER()
@@ -122,23 +109,6 @@ CLinuxRendererGLES::YUVBUFFER::~YUVBUFFER()
 CLinuxRendererGLES::CLinuxRendererGLES()
 {
   m_textureTarget = GL_TEXTURE_2D;
-
-    /* FIXME a verifier */
-#if 0
-
-  for (int i = 0; i < NUM_BUFFERS; i++)
-  {
-#if defined(HAVE_LIBOPENMAX)
-    m_buffers[i].openMaxBuffer = 0;
-#endif
-#ifdef HAVE_VIDEOTOOLBOXDECODER
-    m_buffers[i].cvBufferRef = NULL;
-#endif
-#ifdef HAS_IMXVPU
-    m_buffers[i].imx = NULL;
-#endif
-  }
-#endif
 
   m_renderMethod = RENDER_GLSL;
   m_oldRenderMethod = m_renderMethod;
@@ -501,15 +471,6 @@ void CLinuxRendererGLES::RenderUpdate(bool clear, DWORD flags, DWORD alpha)
 
   if (m_renderMethod & RENDER_BYPASS)
   {
-    // FIXME : move in its own render mode instead of mixup with BYPASS
-    if (m_format == RENDER_FMT_IMX)
-    {
-      int index = m_iYV12RenderBuffer;
-      CDVDVideoCodecIMX *imx = m_buffers[index].imx;
-
-      imx->RenderFrame();
-    }
-
     ManageDisplay();
     // if running bypass, then the player might need the src/dst rects
     // for sizing video playback on a layer other than the gles layer.
@@ -517,22 +478,13 @@ void CLinuxRendererGLES::RenderUpdate(bool clear, DWORD flags, DWORD alpha)
       (*m_RenderUpdateCallBackFn)(m_RenderUpdateCallBackCtx, m_sourceRect, m_destRect);
 
     CRect old = g_graphicsContext.GetScissors();
-    RESOLUTION res = GetResolution();
-    int iWidth = CDisplaySettings::Get().GetResolutionInfo(res).iWidth;
-    int iHeight = CDisplaySettings::Get().GetResolutionInfo(res).iHeight;
 
     g_graphicsContext.BeginPaint();
-    glScissor(0,
-              0,
-              iWidth,
-              iHeight);
-    glClearColor(GLfloat(0.0), GLfloat(0.0), GLfloat(0.0), 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
     g_graphicsContext.SetScissors(m_destRect);
-/*    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
-    glClearColor(GLfloat(2.0/31.0), GLfloat(2.0/63.0), GLfloat(2.0/31.0), 0);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     g_graphicsContext.SetScissors(old);
@@ -624,9 +576,6 @@ unsigned int CLinuxRendererGLES::PreInit()
 #endif
 #ifdef HAVE_VIDEOTOOLBOXDECODER
   m_formats.push_back(RENDER_FMT_CVBREF);
-#endif
-#ifdef HAS_IMXVPU
-  m_formats.push_back(RENDER_FMT_IMX);
 #endif
 #ifdef HAS_LIBSTAGEFRIGHT
   m_formats.push_back(RENDER_FMT_EGLIMG);
@@ -757,13 +706,6 @@ void CLinuxRendererGLES::LoadShaders(int field)
         m_renderMethod = RENDER_CVREF;
         break;
       }
-      else if (m_format == RENDER_FMT_IMX)
-      {
-        CLog::Log(LOGNOTICE, "GL: IMX format Uses BYPASS render method");
-        m_renderMethod = RENDER_BYPASS;
-        break;
-      }
-      
       #if defined(TARGET_DARWIN_IOS)
       else if (ios_version < 5.0 && m_format == RENDER_FMT_YUV420P)
       {
@@ -2662,25 +2604,6 @@ void CLinuxRendererGLES::AddProcessor(struct __CVBuffer *cvBufferRef, int index)
   CVBufferRetain(buf.cvBufferRef);
 }
 #endif
-
-#ifdef HAS_IMXVPU
-void CLinuxRendererGLES::AddProcessor(CDVDVideoCodecIMX *imx, int index)
-{
-  int i;
-
-  /* FIXME force all index for now - 
-   understand why render update is not called with correct index later */
-  for (i = 0; i < 3; i++)
-  {
-    YUVBUFFER &buf = m_buffers[i];
-    buf.imx = imx;
-  }
-
-/*  YUVBUFFER &buf = m_buffers[NextYV12Texture()];
-  buf.imx = imx;*/
-}
-#endif
-
 #ifdef HAS_LIBSTAGEFRIGHT
 void CLinuxRendererGLES::AddProcessor(CStageFrightVideo* stf, EGLImageKHR eglimg, int index)
 {
@@ -2701,7 +2624,6 @@ void CLinuxRendererGLES::AddProcessor(CStageFrightVideo* stf, EGLImageKHR eglimg
 #endif
 }
 #endif
-
 
 #if defined(TARGET_ANDROID)
 void CLinuxRendererGLES::AddProcessor(CDVDMediaCodecInfo *mediacodec, int index)

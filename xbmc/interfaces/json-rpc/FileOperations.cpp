@@ -1,6 +1,6 @@
 /*
  *      Copyright (C) 2005-2013 Team XBMC
- *      http://www.xbmc.org
+ *      http://xbmc.org
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@
 #include "FileOperations.h"
 #include "VideoLibrary.h"
 #include "AudioLibrary.h"
-#include "PictureLibrary.h"
 #include "MediaSource.h"
 #include "filesystem/Directory.h"
 #include "filesystem/File.h"
@@ -171,6 +170,7 @@ JSONRPC_STATUS CFileOperations::GetFileDetails(const CStdString &method, ITransp
     return InvalidParams;
 
   CStdString path = URIUtils::GetDirectory(file);
+
   CFileItemList items;
   if (path.empty() || !CDirectory::GetDirectory(path, items) || !items.Contains(file))
     return InvalidParams;
@@ -243,8 +243,6 @@ bool CFileOperations::FillFileItem(const CFileItemPtr &originalItem, CFileItemPt
       status = CVideoLibrary::FillFileItem(strFilename, item, parameterObject);
     else if (media.Equals("music"))
       status = CAudioLibrary::FillFileItem(strFilename, item, parameterObject);
-    else if (media.Equals("picture"))
-      status = CPictureLibrary::FillFileItem(strFilename, item, parameterObject);
 
     if (status && item->GetLabel().empty())
     {
@@ -325,8 +323,7 @@ bool CFileOperations::FillFileItemList(const CVariant &parameterObject, CFileIte
           if (items[i]->m_bIsFolder)
             filteredDirectories.Add(items[i]);
           else if ((media == "video" && items[i]->HasVideoInfoTag()) ||
-                   (media == "music" && items[i]->HasMusicInfoTag()) ||
-                   (media == "pictures" && items[i]->HasPictureInfoTag()))
+                   (media == "music" && items[i]->HasMusicInfoTag()))
             list.Add(items[i]);
           else
           {

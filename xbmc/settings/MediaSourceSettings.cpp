@@ -103,7 +103,6 @@ bool CMediaSourceSettings::Load(const std::string &file)
   GetSources(pRootElement, "video", m_videoSources, dummy);
   GetSources(pRootElement, "programs", m_programSources, m_defaultProgramSource);
   GetSources(pRootElement, "pictures", m_pictureSources, m_defaultPictureSource);
-  GetSources(pRootElement, "contacts", m_contactSources, m_defaultContactSource);
   GetSources(pRootElement, "files", m_fileSources, m_defaultFileSource);
   GetSources(pRootElement, "music", m_musicSources, m_defaultMusicSource);
 
@@ -129,7 +128,6 @@ bool CMediaSourceSettings::Save(const std::string &file) const
   SetSources(pRoot, "video", m_videoSources, "");
   SetSources(pRoot, "music", m_musicSources, m_defaultMusicSource);
   SetSources(pRoot, "pictures", m_pictureSources, m_defaultPictureSource);
-  SetSources(pRoot, "contacts", m_contactSources, m_defaultContactSource);
   SetSources(pRoot, "files", m_fileSources, m_defaultFileSource);
 
   CWakeOnAccess::Get().QueueMACDiscoveryForAllRemotes();
@@ -141,7 +139,6 @@ void CMediaSourceSettings::Clear()
 {
   m_programSources.clear();
   m_pictureSources.clear();
-  m_contactSources.clear();
   m_fileSources.clear();
   m_musicSources.clear();
   m_videoSources.clear();
@@ -159,8 +156,6 @@ VECSOURCES* CMediaSourceSettings::GetSources(const std::string &type)
     return &m_videoSources;
   else if (type == "pictures")
     return &m_pictureSources;
-  else if (type == "contacts")
-    return &m_contactSources;
 
   return NULL;
 }
@@ -175,8 +170,6 @@ const std::string& CMediaSourceSettings::GetDefaultSource(const std::string &typ
     return m_defaultMusicSource;
   else if (type == "pictures")
     return m_defaultPictureSource;
-  else if (type == "contacts")
-    return m_defaultContactSource;
 
   return StringUtils::Empty;
 }
@@ -191,8 +184,6 @@ void CMediaSourceSettings::SetDefaultSource(const std::string &type, const std::
     m_defaultMusicSource = source;
   else if (type == "pictures")
     m_defaultPictureSource = source;
-  else if (type == "contacts")
-    m_defaultContactSource = source;
 }
 
 // NOTE: This function does NOT save the sources.xml file - you need to call SaveSources() separately.

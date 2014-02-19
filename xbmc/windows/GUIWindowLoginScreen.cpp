@@ -307,6 +307,7 @@ void CGUIWindowLoginScreen::LoadProfile(unsigned int profile)
 
   g_weatherManager.Refresh();
   g_application.SetLoggingIn(true);
+
 #ifdef HAS_JSONRPC
   JSONRPC::CJSONRPC::Initialize();
 #endif

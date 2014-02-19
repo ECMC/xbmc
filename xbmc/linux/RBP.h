@@ -58,7 +58,6 @@ private:
   DllBcmHost *m_DllBcmHost;
   bool       m_initialized;
   bool       m_omx_initialized;
-  bool       m_omx_image_init;
   int        m_arm_mem;
   int        m_gpu_mem;
   COMXCore   *m_OMX;
