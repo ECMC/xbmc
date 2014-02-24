@@ -1,0 +1,60 @@
+<sources>
+    <programs>
+        <default pathversion="1"></default>
+    </programs>
+    <video>
+        <default pathversion="1"></default>
+        <source>
+            <name>Videos</name>
+            <path pathversion="1">/Users/ashokjaiswal/Videos/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>TV Shows</name>
+            <path pathversion="1">/Users/ashokjaiswal/TV Shows/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>Movies</name>
+            <path pathversion="1">/Users/ashokjaiswal/Movies/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </video>
+    <music>
+        <default pathversion="1"></default>
+        <source>
+            <name>Music</name>
+            <path pathversion="1">/Users/ashokjaiswal/Music/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </music>
+    <pictures>
+        <default pathversion="1"></default>
+        <source>
+            <name>Pictures</name>
+            <path pathversion="1">/Users/ashokjaiswal/Pictures/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </pictures>
+    <contacts>
+        <default pathversion="1"></default>
+        <source>
+            <name>Contacts</name>
+            <path pathversion="1">/Users/ashokjaiswal/Contacts/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </contacts>
+    <files>
+        <default pathversion="1">Movies</default>
+        <source>
+            <name>Movies</name>
+            <path pathversion="1">/Users/ashokjaiswal/Movies/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>TV Shows</name>
+            <path pathversion="1">/Users/ashokjaiswal/TV Shows/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </files>
+</sources>
