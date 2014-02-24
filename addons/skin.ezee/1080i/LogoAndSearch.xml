@@ -1,0 +1,45 @@
+<includes>
+	<include name="LogoAndSearch">
+		<!-- logo -->
+		<control type="image">
+			<description>LOGO</description>
+			<posx>61</posx>
+			<posy>49</posy>
+			<width>60</width>
+			<height>59</height>
+			<aspectratio aligny="top" align="left">keep</aspectratio>
+			<texture>ezee/ezee_logo.png</texture>
+			<include>VisibleFadeEffect</include>
+			<include>Window_OpenClose_Animation</include>
+			<visible>!Skin.HasSetting(homepageWeatherinfo)</visible>
+		</control>
+		<!--search conrol-->
+		<control type="radiobutton" id="19">
+				<description>Global Search</description>
+				<posx>171</posx>
+				<posy>60</posy>
+				<height>35</height>
+				<width>250</width>
+				<textwidth>150</textwidth>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus flipy="true" border="5">HomeSubFO.png</texturefocus>
+				<texturenofocus flipy="true" border="5">HomeSubNF.png</texturenofocus>
+				<pulseonselect>false</pulseonselect>
+				<label>137</label>
+				<onclick>RunScript(script.globalsearch)</onclick>
+				<textureradiofocus>icon_search.png</textureradiofocus>
+				<textureradionofocus>icon_search.png</textureradionofocus>
+				<onleft>20</onleft>
+				<onright>20</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+				<visible>System.HasAddon(script.globalsearch)</visible>
+                <visible>!Container(9000).Hasfocus(4) + !Skin.HasSetting(HomepageHideRecentlyAddedPicture)</visible>
+			</control> 		
+	</include>
+</includes>

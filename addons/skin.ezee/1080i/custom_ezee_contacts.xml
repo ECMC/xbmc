@@ -1,0 +1,269 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<control type="group">
+			<posx>256</posx>
+			<posy>216</posy>
+			<include>LeftMenuList</include>					
+			<!-- contact details -->
+		<control type="image" id="60">
+			<description>Contact Picture</description>
+				<posx>498</posx>
+				<posy>0</posy>
+				<width>332</width>
+				<height>332</height>
+				<texture>-</texture>
+			<visible>true</visible>
+			<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+		</control>
+			
+			<control type="image">
+				<posx>498</posx>
+				<posy>0</posy>
+				<width>332</width>
+				<height>332</height>
+				<info>ListItem.Icon</info>
+				<texture>ezee/contact_profile_overlay.png</texture>
+			</control>
+		<control type="button" id="70">
+    	    <description>My First label</description>
+        	<posx>498</posx>
+	        <posy>405</posy>
+    	    <width>400</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Call Contact</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>				
+			<control type="image">
+				<posx>498</posx>
+				<posy>460</posy>
+				<width>400</width>
+				<height>1</height>
+				<info>ListItem.Icon</info>
+				<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+				<texture>ezee/grey_dot.png</texture>
+			</control>
+		<control type="button" id="71">
+    	    <description>My First label</description>
+        	<posx>498</posx>
+	        <posy>460</posy>
+    	    <width>400</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Send Message</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+			<control type="image">
+				<posx>498</posx>
+				<posy>515</posy>
+				<width>400</width>
+				<height>1</height>
+				<info>ListItem.Icon</info>
+				<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+				<texture>ezee/grey_dot.png</texture>
+			</control>
+		<control type="button" id="72">
+    	    <description>My First label</description>
+        	<posx>498</posx>
+	        <posy>515</posy>
+    	    <width>400</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Add to Favourites</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+			<control type="image">
+				<posx>498</posx>
+				<posy>570</posy>
+				<width>400</width>
+				<height>1</height>
+				<info>ListItem.Icon</info>
+				<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+				<texture>ezee/grey_dot.png</texture>
+			</control>
+		<control type="button" id="73">
+    	    <description>My First label</description>
+        	<posx>498</posx>
+	        <posy>570</posy>
+    	    <width>400</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Edit Contact</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+		<control type="label">
+    	    <description>My First label</description>
+        	<posx>975</posx>
+	        <posy>30</posy>
+    	    <width>110</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>mobile</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="label" id="74">
+    	    <description>My First label</description>
+        	<posx>1075</posx>
+	        <posy>30</posy>
+    	    <width>500</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>2489239823982938</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>
+		<control type="label">
+    	    <description>My First label</description>
+        	<posx>975</posx>
+	        <posy>85</posy>
+    	    <width>110</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>email</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="label" id="75">
+    	    <description>My First label</description>
+        	<posx>1075</posx>
+	        <posy>85</posy>
+    	    <width>500</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>@dsksjkd</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>
+		<control type="label">
+    	    <description>My First label</description>
+        	<posx>975</posx>
+	        <posy>140</posy>
+    	    <width>110</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>work</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="label" id="76">
+    	    <description>My First label</description>
+        	<posx>1075</posx>
+	        <posy>140</posy>
+    	    <width>500</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>+852 6043 4478</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  		  
+		</control>		
+	</controls>
+</window>

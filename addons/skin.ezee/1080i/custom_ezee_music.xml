@@ -1,0 +1,100 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<control type="group">
+			<posx>256</posx>
+			<posy>216</posy>
+			<include>LeftMenuMusicGrid</include>
+			<!-- song list -->
+			<control type="list" id="205">
+				<posx>468</posx>
+				<posy>0</posy>
+				<width>606</width>
+				<height>818</height>
+				<onleft>20</onleft>
+				<onright>105</onright>
+				<onup>19</onup>
+				<ondown>19</ondown>
+		        <viewtype label="3D list">list</viewtype>
+		        <orientation>vertical</orientation>
+		        <pagecontrol>25</pagecontrol>
+		        <focusposition>0</focusposition>
+      			<scrolltime tween="sine" easing="out">200</scrolltime>
+      				<itemlayout height="54" width="325">
+					<control type="image" id="106">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>54</width>
+						<height>54</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>      		
+					<control type="label" id="107">
+						<posx>75</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>ffffffff</textcolor>
+			    	    <shadowcolor>aaaaaaaa</shadowcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label2" id="107">
+						<posx>498</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>ffffffff</textcolor>
+			    	    <shadowcolor>aaaaaaaa</shadowcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="54" width="325">
+					<control type="image">
+						<width>325</width>
+						<height>54</height>
+						<posx>0</posx>
+						<posy>0</posy>
+						<visible>Control.HasFocus(105)</visible>
+						<texture>ezee/MenuItemFO.png</texture>
+					</control>
+					<control type="image" id="106">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>54</width>
+						<height>54</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>
+					<control type="label" id="107">
+						<posx>75</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>ffffffff</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+					<control type="label2" id="107">
+						<posx>498</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>ffffffff</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>		
+	</controls>
+</window>

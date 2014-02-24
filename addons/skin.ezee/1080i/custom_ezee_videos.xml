@@ -1,0 +1,100 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<control type="group">
+			<posx>256</posx>
+			<posy>216</posy>
+			<include>LeftMenuList</include>					
+			<!-- album photos grid control -->
+			<control type="panel" id="205">
+				<posx>488</posx>
+				<posy>0</posy>
+				<width>1080</width>
+				<height>818</height>
+				<onleft>105</onleft>
+				<onright>20</onright>
+				<onup>19</onup>
+				<ondown>19</ondown>
+				<scrolltime tween="sine" easing="out">200</scrolltime>
+				<viewtype label="536">icon</viewtype>
+				<pagecontrol>25</pagecontrol>
+				<include>contentpanelslide</include>
+				<itemlayout height="216" width="216">
+					<control type="image">
+						<posx>3</posx>
+						<posy>3</posy>
+						<width>206</width>
+						<height>206</height>
+						<info>ListItem.Icon</info>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+					<control type="image">
+						<posx>3</posx>
+						<posy>3</posy>
+						<width>206</width>
+						<height>206</height>
+						<info>ListItem.Overlay</info>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+					<control type="label">
+						<posx>3</posx>
+						<posy>3</posy>
+						<width>206</width>
+						<height>206</height>
+						<font>grid_label</font>
+						<selectedcolor>green</selectedcolor>
+						<align>center</align>
+						<info>ListItem.Label</info>
+					</control>
+				</itemlayout>
+				<focusedlayout height="222" width="222">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>216</width>
+						<height>216</height>
+						<texture>ezee/folder-focus.png</texture>
+						<animation effect="zoom" end="-6,-6,222,222" time="100">focus</animation>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>216</width>
+						<height>216</height>
+						<info>ListItem.Icon</info>
+						<animation effect="zoom" end="0,0,213,213" time="100">focus</animation>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>216</width>
+						<height>216</height>
+						<info>ListItem.Overlay</info>
+						<animation effect="slide" end="0,0" time="100">focus</animation>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>
+					<control type="label">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>216</width>
+						<height>216</height>
+						<font>grid_label</font>
+						<selectedcolor>green</selectedcolor>
+						<align>center</align>
+						<info>ListItem.Label</info>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>		
+	</controls>
+</window>

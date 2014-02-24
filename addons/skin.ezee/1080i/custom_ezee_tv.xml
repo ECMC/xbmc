@@ -1,0 +1,18 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<control type="group">
+			<posx>256</posx>
+			<posy>216</posy>
+			<include>LeftMenuGrid</include>					
+		</control>		
+	</controls>
+</window>

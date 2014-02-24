@@ -1,0 +1,98 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<include>CommonBackground</include>
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<!-- list control -->
+		<control type="group">
+			<posx>171</posx>
+			<posy>145</posy>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300" />
+				<effect type="fade" start="0" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+			<control type="list" id="105">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>255</width>
+				<height>545</height>
+				<onleft>20</onleft>
+				<onright>9001</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+		        <viewtype label="3D list">list</viewtype>
+		        <orientation>vertical</orientation>
+		        <pagecontrol>25</pagecontrol>
+		        <focusposition>0</focusposition>
+      			<scrolltime tween="sine" easing="out">200</scrolltime>
+      				<itemlayout height="45" width="255">
+					<control type="image" id="106">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>45</width>
+						<height>45</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>      		
+					<control type="label" id="107">
+						<posx>55</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="45" width="255">
+					<control type="image">
+						<width>255</width>
+						<height>45</height>
+						<posx>0</posx>
+						<posy>0</posy>
+						<visible>Control.HasFocus(105)</visible>
+						<texture>ezee/MenuItemFO.png</texture>
+					</control>
+					<control type="image" id="106">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>45</width>
+						<height>45</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>
+					<control type="label" id="107">
+						<posx>55</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				<!--
+				<content>
+					<item id="1">
+						<label>Ashok sing jaiswal</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+				</content>
+				-->
+			</control>
+		</control>		
+	</controls>
+</window>

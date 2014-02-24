@@ -1,0 +1,146 @@
+<includes>
+	<include name="LeftMainMenu">
+		<!-- left main menu buttons -->
+		<control type="group" id="10">
+			<posx>52</posx>
+			<posy>145</posy>
+			<include>Window_OpenClose_Animation</include>
+			<control type="button" id="20">
+				<description>Photos push button</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+                <onclick>ActivateWindow(Videos,library://comedy.xml/,return)</onclick>                                                        
+				<texturefocus border="5">ezee/icon_photosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_photos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>27</onup>
+				<ondown>21</ondown>
+			</control>
+			<control type="button" id="21">
+				<description>Videos push button</description>
+				<posx>0</posx>
+				<posy>70</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(10025,videodb://1/7/,return)</onclick>
+				<texturefocus border="5">ezee/icon_videosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_videos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>20</onup>
+				<ondown>22</ondown>
+			</control>
+			<control type="button" id="22">
+				<description>Contacts push button</description>
+				<posx>0</posx>
+				<posy>140</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(ShutdownMenu)</onclick>
+				<texturefocus border="5">ezee/icon_contactsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_contacts.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>21</onup>
+				<ondown>23</ondown>
+			</control>
+			<control type="button" id="23">
+				<description>Movies push button</description>
+				<posx>0</posx>
+				<posy>210</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_moviesFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_movies.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>22</onup>
+				<ondown>24</ondown>
+			</control>
+			<control type="button" id="24">
+				<description>TV Shows push button</description>
+				<posx>0</posx>
+				<posy>280</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_TVFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_TV.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>23</onup>
+				<ondown>25</ondown>
+			</control>
+			<control type="button" id="25">
+				<description>Music push button</description>
+				<posx>0</posx>
+				<posy>350</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Music)</onclick>
+				<texturefocus border="5">ezee/icon_musicFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_music.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>24</onup>
+				<ondown>26</ondown>
+			</control>
+			<control type="button" id="26">
+				<description>Streams push button</description>
+				<posx>0</posx>
+				<posy>420</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_streamsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_streams.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>25</onup>
+				<ondown>27</ondown>
+			</control>
+			<control type="button" id="27">
+				<description>Settings push button</description>
+				<posx>0</posx>
+				<posy>490</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_settingsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_settings.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>26</onup>
+				<ondown>20</ondown>
+			</control>
+		</control>		
+	</include>
+</includes>

@@ -1,0 +1,371 @@
+<window id="2345" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+<control type="largeimage" id="59">
+      <description>My first largeimage control</description>
+      <posx>0</posx>
+      <posy>0</posy>
+      <width>1920</width>
+      <height>1080</height>
+      <visible>true</visible>
+      <colordiffuse>44FFFFFF</colordiffuse>
+      <fadetime>200</fadetime>
+      <texture border="5" flipY="true" flipX="false"></texture>
+      <aspectratio>keep</aspectratio>
+</control>		
+		<include>LogoAndSearch</include>	
+		<include>LeftMainMenu</include>		
+		<include>LibraryHeader</include>		
+		<control type="group">
+			<posx>256</posx>
+			<posy>216</posy>
+			<include>LeftMenuList</include>					
+			<!-- contact details -->
+		<control type="button" id="62">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>0</posy>
+    	    <width>19</width>
+			<height>62</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+      		<texturefocus>ezee/previous_movieOF.png</texturefocus>
+		    <texturenofocus>ezee/previous_movie.png</texturenofocus>
+            <number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+				<onleft>24</onleft>
+				<onright>64</onright>
+				<onup>19</onup>
+				<ondown>105</ondown>
+		  </control>
+		<control type="label" id="63">
+    	    <description>My First label</description>
+        	<posx>43</posx>
+	        <posy>0</posy>
+    	    <width>245</width>
+			<height>62</height>
+        	<visible>true</visible>
+	        <align>center</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>1/24</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="button" id="64">
+    	    <description>My First label</description>
+        	<posx>302</posx>
+	        <posy>0</posy>
+    	    <width>19</width>
+			<height>62</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+      		<texturefocus>ezee/next_movieOF.png</texturefocus>
+		    <texturenofocus>ezee/next_movie.png</texturenofocus>
+            <number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+				<onleft>62</onleft>
+				<onright>76</onright>
+				<onup>19</onup>
+				<ondown>105</ondown>
+		  </control>		  			
+		<control type="image" id="60">
+			<description>Movie Picture</description>
+				<posx>0</posx>
+				<posy>63</posy>
+				<width>321</width>
+				<height>469</height>
+				<texture>-</texture>
+			<visible>true</visible>
+			<colordiffuse>FFFFFFFF</colordiffuse>			
+			<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+		</control>
+		<control type="button" id="105">
+    	    <description>My First label</description>
+				<posx>74</posx>
+				<posy>223</posy>
+				<width>167</width>
+				<height>167</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+      		<texturefocus>ezee/movie_poster_play_button_overlayOF.png</texturefocus>
+		    <texturenofocus>ezee/movie_poster_play_button_overlay.png</texturenofocus>
+				<onleft>24</onleft>
+				<onright>76</onright>
+				<onup>64</onup>
+				<ondown>70</ondown>
+		</control>
+
+		<control type="button" id="70">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>550</posy>
+    	    <width>321</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>OVERVIEW</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>				
+		<control type="button" id="71">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>600</posy>
+    	    <width>321</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>TRAILER</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+		<control type="button" id="72">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>650</posy>
+    	    <width>321</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>CAST & CREW</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+		<control type="button" id="73">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>700</posy>
+    	    <width>321</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>REVIEWS</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>
+		<control type="button" id="73">
+    	    <description>My First label</description>
+        	<posx>0</posx>
+	        <posy>750</posy>
+    	    <width>321</width>
+			<height>55</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>ADD TO FAVOURITE</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+    	    <border>0</border>
+		  </control>		  
+		<control type="label" id="74">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>0</posy>
+    	    <width>1080</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>duration</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="label" id="75">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>50</posy>
+    	    <width>1080</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>genre</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>
+		<control type="label" id="76">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>450</posy>
+    	    <width>200</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>top</aligny>
+        	<scroll>false</scroll>
+	        <label>director</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="label" id="77">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>150</posy>
+    	    <width>1080</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>cast</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>
+		<control type="label" id="78">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>250</posy>
+    	    <width>1080</width>
+			<wrapmultiline>true</wrapmultiline>    	    
+			<height>265</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>work</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>		  
+		<control type="button" id="76">
+    	    <description>My First label</description>
+        	<posx>488</posx>
+	        <posy>565</posy>
+    	    <width>200</width>
+			<height>50</height>
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>PLAY</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>contact_details</font>
+	        <textcolor>cccccccc</textcolor>
+    	    <shadowcolor>00000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+				<onleft>105</onleft>
+				<onright>105</onright>
+				<onup>105</onup>
+				<ondown>105</ondown>
+		  </control>		  		  
+		</control>		
+	</controls>
+</window>

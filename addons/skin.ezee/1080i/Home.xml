@@ -1,0 +1,228 @@
+<window>
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<control type="image">
+			<description>LOGO</description>
+			<posx>91</posx>
+			<posy>71</posy>
+			<width>60</width>
+			<height>70</height>
+			<aspectratio aligny="top" align="left">keep</aspectratio>
+			<texture>ezee/ezee_logo.png</texture>
+			<include>VisibleFadeEffect</include>
+			<include>Window_OpenClose_Animation</include>
+			<visible>!Skin.HasSetting(homepageWeatherinfo)</visible>
+		</control>
+			<control type="radiobutton" id="19">
+				<description>Global Search</description>
+				<posx>255</posx>
+				<posy>90</posy>
+				<height>31</height>
+				<width>323</width>
+				<textwidth>150</textwidth>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus flipy="true" border="5">HomeSubFO.png</texturefocus>
+				<texturenofocus flipy="true" border="5">HomeSubNF.png</texturenofocus>
+				<pulseonselect>false</pulseonselect>
+				<label>137</label>
+				<onclick>RunScript(script.globalsearch)</onclick>
+				<textureradiofocus>icon_search.png</textureradiofocus>
+				<textureradionofocus>icon_search.png</textureradionofocus>
+				<onleft>20</onleft>
+				<onright>20</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+				<visible>System.HasAddon(script.globalsearch)</visible>
+                <visible>!Container(9000).Hasfocus(4) + !Skin.HasSetting(HomepageHideRecentlyAddedPicture)</visible>
+			</control> 		
+			<!-- Time lables -->			
+		<control type="group" id="40">
+			<posx>250</posx>
+			<posy>350</posy>
+			<width>200</width>
+			<control type="label" id="41">
+				<description>Month label</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<align>center</align>
+				<aligny>top</aligny>
+				<font>home_month</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>$INFO[System.Date(MMM)]</label>
+			</control>
+			<control type="label" id="42">
+				<posx>0</posx>
+				<posy>10</posy>
+				<description>Date label</description>
+				<align>center</align>
+				<aligny>top</aligny>
+				<font>home_day</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>$INFO[System.Date(dd)]</label>
+			</control>
+			<control type="label"  id="43">
+				<posx>0</posx>
+				<posy>195</posy>
+				<description>Weekday label</description>
+				<align>center</align>
+				<aligny>top</aligny>
+				<font>home_week_day</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>$INFO[System.Date(DDD)]</label>
+			</control>
+			<control type="label" id="44">
+				<description>Location label</description>
+				<posx>0</posx>
+				<posy>250</posy>
+				<align>center</align>
+				<aligny>bottom</aligny>
+				<font>home_location</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>Hong Kong, China</label>
+			</control>
+			<control type="label" id="45">
+				<description>time label</description>
+				<posx>0</posx>
+				<posy>285</posy>
+				<align>center</align>
+				<aligny>bottom</aligny>
+				<font>home_time</font>
+				<textcolor>white</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>$INFO[System.Time(hh:mm)]</label>
+			</control>
+		</control>
+		<!-- main menu buttons -->
+		<control type="group" id="10">
+			<posx>708</posx>
+			<posy>362</posy>
+			<include>Window_OpenClose_Animation</include>
+			<control type="button" id="20">
+				<description>Photos push button</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.photos?buttonid=20)</onclick>
+				<texturefocus border="5">ezee/icon_photosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_photos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>22</onright>
+				<onup>19</onup>
+				<ondown>21</ondown>
+			</control>
+			<control type="button" id="21">
+				<description>Videos push button</description>
+				<posx>0</posx>
+				<posy>210</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.videos?buttonid=21)</onclick>
+				<texturefocus border="5">ezee/icon_videosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_videos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>23</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+			</control>
+			<control type="button" id="22">
+				<description>Contacts push button</description>
+				<posx>250</posx>
+				<posy>0</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.contacts?buttonid=22)</onclick>
+				<texturefocus border="5">ezee/icon_contactsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_contacts.png</texturenofocus>
+				<onleft>20</onleft>
+				<onright>24</onright>
+				<onup>23</onup>
+				<ondown>23</ondown>
+			</control>
+			<control type="button" id="23">
+				<description>Movies push button</description>
+				<posx>250</posx>
+				<posy>210</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.movies?buttonid=23)</onclick>
+				<texturefocus border="5">ezee/icon_moviesFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_movies.png</texturenofocus>
+				<onleft>21</onleft>
+				<onright>25</onright>
+				<onup>22</onup>
+				<ondown>22</ondown>
+			</control>
+			<control type="button" id="24">
+				<description>TV Shows push button</description>
+				<posx>500</posx>
+				<posy>0</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.tv?buttonid=24)</onclick>
+				<texturefocus border="5">ezee/icon_TVFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_TV.png</texturenofocus>
+				<onleft>22</onleft>
+				<onright>26</onright>
+				<onup>25</onup>
+				<ondown>25</ondown>
+			</control>
+			<control type="button" id="25">
+				<description>Music push button</description>
+				<posx>500</posx>
+				<posy>210</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>RunPlugin(plugin://plugin.ezee.music?buttonid=25)</onclick>
+				<texturefocus border="5">ezee/icon_musicFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_music.png</texturenofocus>
+				<onleft>23</onleft>
+				<onright>27</onright>
+				<onup>24</onup>
+				<ondown>24</ondown>
+			</control>
+			<control type="button" id="26">
+				<description>Streams push button</description>
+				<posx>750</posx>
+				<posy>0</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_streamsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_streams.png</texturenofocus>
+				<onleft>24</onleft>
+				<onright>20</onright>
+				<onup>27</onup>
+				<ondown>27</ondown>
+			</control>
+			<control type="button" id="27">
+				<description>Settings push button</description>
+				<posx>750</posx>
+				<posy>210</posy>
+				<width>132</width>
+				<height>132</height>
+				<onclick>ActivateWindow(Settings)</onclick>
+				<texturefocus border="5">ezee/icon_settingsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_settings.png</texturenofocus>
+				<onleft>25</onleft>
+				<onright>21</onright>
+				<onup>26</onup>
+				<ondown>26</ondown>
+			</control>
+		</control>		
+	</controls>	
+</window>

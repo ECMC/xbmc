@@ -1,0 +1,628 @@
+<includes>
+	<include name="CommonBackground">
+		<control type="image">
+			<description>Normal Default Background Image</description>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<aspectratio>scale</aspectratio>
+			<texture>$INFO[Skin.CurrentTheme,special://skin/backgrounds/,.jpg]</texture>
+			<visible>![Skin.HasSetting(UseCustomBackground) + !IsEmpty(Skin.String(CustomBackgroundPath))]</visible>
+			<include>VisibleFadeEffect</include>
+		</control>
+		<control type="image">
+			<description>User Set Background Image</description>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<aspectratio>scale</aspectratio>
+			<texture>$INFO[Skin.String(CustomBackgroundPath)]</texture>
+			<visible>Skin.HasSetting(UseCustomBackground) + !IsEmpty(Skin.String(CustomBackgroundPath))</visible>
+			<include>VisibleFadeEffect</include>
+		</control>
+
+		 <!-- ricosett -->
+		<control type="image">
+		      <description>Fanart</description>
+		      <include>CommonFanartVarsSingle</include>
+		      <texture background="true">$INFO[Container(8003).ListItem.Property(Fanart)]</texture>
+		      <visible>Control.HasFocus(8003)</visible>
+		</control>
+		<control type="image">
+		      <description>Fanart</description>
+		      <include>CommonFanartVarsSingle</include>
+		      <texture background="true">$INFO[Container(8004).ListItem.Property(Fanart)]</texture>
+		      <visible>Control.HasFocus(8004)</visible>
+		</control>
+		 <!-- ricosett -->
+
+
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<aspectratio>scale</aspectratio>
+			<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+			<include>backgroundfade</include>
+			<fadetime>FanartCrossfadeTime</fadetime>
+			<visible>!Skin.HasSetting(HideBackGroundFanart) + !IsEmpty(ListItem.Property(Fanart_Image))</visible>
+			<include>Window_OpenClose_Animation</include>
+			<visible>![Player.HasVideo + !Skin.HasSetting(ShowBackgroundVideo)]</visible>
+		</control>
+
+
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<texture>special://skin/backgrounds/media-overlay.jpg</texture>
+			<visible>[Player.HasVideo + !Skin.HasSetting(ShowBackgroundVideo)] + ![Window.IsVisible(PVR) + [Control.IsVisible(11) | Control.IsVisible(12)]]</visible>
+			<include>VisibleFadeEffect</include>
+		</control>
+		<control type="visualisation">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<visible>Player.HasAudio + !Skin.HasSetting(ShowBackgroundVis) + ![Window.IsVisible(PVR) + [Control.IsVisible(11) | Control.IsVisible(12)]]</visible>
+			<visible>!SubString(Window(videolibrary).Property(TvTunesIsAlive),True)</visible>
+		</control>
+		<control type="videowindow">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<visible>Player.HasVideo + !Skin.HasSetting(ShowBackgroundVideo) + ![Window.IsVisible(PVR) + [Control.IsVisible(11) | Control.IsVisible(12)]]</visible>
+		</control>
+		<control type="image">
+			<posx>0</posx>
+			<posy>-40</posy>
+			<width>1280</width>
+			<height>120</height>
+			<texture flipy="true">HomeNowPlayingBack.png</texture>
+			<visible>[Player.HasVideo + !Skin.HasSetting(ShowBackgroundVideo)] | [Player.HasAudio + ![Skin.HasSetting(ShowBackgroundVis) | SubString(Window(videolibrary).Property(TvTunesIsAlive),True)]] | [!Skin.HasSetting(HideBackGroundFanart) + !IsEmpty(ListItem.Property(Fanart_Image))]</visible>
+			<include>VisibleFadeEffect</include>
+		</control>
+
+
+
+	</include>
+	<include name="ContentPanelBackgrounds">
+		<control type="image">
+			<posx>0</posx>
+			<posy>100r</posy>
+			<width>1280</width>
+			<height>100</height>
+			<texture>floor.png</texture>
+			<animation effect="slide" start="0,10" end="0,0" time="200" condition="Window.Previous(Home)">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="0,10" time="200" condition="Window.Next(Home)">WindowClose</animation>
+		</control>
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(50)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>750</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>750</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(504) | Control.IsVisible(550) | Control.IsVisible(512)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>640</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>640</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>700</posx>
+					<posy>60</posy>
+					<width>530</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>700</posx>
+					<posy>652</posy>
+					<width>530</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(551) | Control.IsVisible(560) | Control.IsVisible(511) | Control.IsVisible(506) | Control.IsVisible(513)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>840</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>840</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>900</posx>
+					<posy>60</posy>
+					<width>330</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>900</posx>
+					<posy>652</posy>
+					<width>330</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(501)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>50</posy>
+					<width>1180</width>
+					<height>610</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>1180</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(503)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>230</posy>
+					<width>640</width>
+					<height>430</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>640</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>700</posx>
+					<posy>230</posy>
+					<width>550</width>
+					<height>430</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>700</posx>
+					<posy>652</posy>
+					<width>550</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(51) | Control.IsVisible(500) | Control.IsVisible(505)</visible>
+				<control type="image">
+					<posx>75</posx>
+					<posy>60</posy>
+					<width>1130</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>75</posx>
+					<posy>652</posy>
+					<width>1130</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(514)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>490</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>490</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>550</posx>
+					<posy>60</posy>
+					<width>680</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>550</posx>
+					<posy>652</posy>
+					<width>680</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(515)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>400</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>400</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>460</posx>
+					<posy>60</posy>
+					<width>770</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>460</posx>
+					<posy>652</posy>
+					<width>770</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="ContentPanelBackgroundsPVR">
+		<control type="image">
+			<posx>0</posx>
+			<posy>100r</posy>
+			<width>1280</width>
+			<height>100</height>
+			<texture>floor.png</texture>
+			<animation effect="fade" time="250" condition="Window.Previous(Home)">WindowOpen</animation>
+			<animation effect="fade" time="250" condition="Window.Next(Home)">WindowClose</animation>
+		</control>
+		<control type="group">
+			<include>Window_OpenClose_Animation</include>		
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(10) | Control.IsVisible(14) | Control.IsVisible(15) | Control.IsVisible(16) | Control.IsVisible(17)</visible>
+				<control type="image">
+					<posx>55</posx>
+					<posy>60</posy>
+					<width>1170</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>55</posx>
+					<posy>652</posy>
+					<width>1170</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(11) | Control.IsVisible(12)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>450</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>450</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>510</posx>
+					<posy>60</posy>
+					<width>730</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>510</posx>
+					<posy>652</posy>
+					<width>730</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+			<control type="group">
+				<include>VisibleFadeEffect</include>
+				<visible>Control.IsVisible(13)</visible>
+				<control type="image">
+					<posx>50</posx>
+					<posy>60</posy>
+					<width>840</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>50</posx>
+					<posy>652</posy>
+					<width>840</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+				<control type="image">
+					<posx>900</posx>
+					<posy>60</posy>
+					<width>330</width>
+					<height>600</height>
+					<texture border="15">ContentPanel.png</texture>
+				</control>
+				<control type="image">
+					<posx>900</posx>
+					<posy>652</posy>
+					<width>330</width>
+					<height>64</height>
+					<texture border="15">ContentPanelMirror.png</texture>
+				</control>
+			</control>
+		</control>
+	</include>
+	<include name="LogoAndSearch">
+		<!-- logo -->
+		<control type="image">
+			<description>LOGO</description>
+			<posx>61</posx>
+			<posy>49</posy>
+			<width>60</width>
+			<height>59</height>
+			<aspectratio aligny="top" align="left">keep</aspectratio>
+			<texture>ezee/ezee_logo.png</texture>
+			<include>VisibleFadeEffect</include>
+			<include>Window_OpenClose_Animation</include>
+			<visible>!Skin.HasSetting(homepageWeatherinfo)</visible>
+		</control>
+		<!--search conrol-->
+		<control type="radiobutton" id="19">
+				<description>Global Search</description>
+				<posx>171</posx>
+				<posy>60</posy>
+				<height>35</height>
+				<width>250</width>
+				<textwidth>150</textwidth>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus flipy="true" border="5">HomeSubFO.png</texturefocus>
+				<texturenofocus flipy="true" border="5">HomeSubNF.png</texturenofocus>
+				<pulseonselect>false</pulseonselect>
+				<label>137</label>
+				<onclick>RunScript(script.globalsearch)</onclick>
+				<textureradiofocus>icon_search.png</textureradiofocus>
+				<textureradionofocus>icon_search.png</textureradionofocus>
+				<onleft>20</onleft>
+				<onright>20</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+				<visible>System.HasAddon(script.globalsearch)</visible>
+                <visible>!Container(9000).Hasfocus(4) + !Skin.HasSetting(HomepageHideRecentlyAddedPicture)</visible>
+			</control> 		
+	</include>
+	<include name="LeftMainMenu">
+		<!-- left main menu buttons -->
+		<control type="group" id="10">
+			<posx>52</posx>
+			<posy>145</posy>
+			<include>Window_OpenClose_Animation</include>
+			<control type="button" id="20">
+				<description>Photos push button</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+                <onclick>ActivateWindow(Videos,library://comedy.xml/,return)</onclick>                                                        
+				<texturefocus border="5">ezee/icon_photosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_photos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>27</onup>
+				<ondown>21</ondown>
+			</control>
+			<control type="button" id="21">
+				<description>Videos push button</description>
+				<posx>0</posx>
+				<posy>70</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(10025,videodb://1/7/,return)</onclick>
+				<texturefocus border="5">ezee/icon_videosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_videos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>20</onup>
+				<ondown>22</ondown>
+			</control>
+			<control type="button" id="22">
+				<description>Contacts push button</description>
+				<posx>0</posx>
+				<posy>140</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(ShutdownMenu)</onclick>
+				<texturefocus border="5">ezee/icon_contactsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_contacts.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>21</onup>
+				<ondown>23</ondown>
+			</control>
+			<control type="button" id="23">
+				<description>Movies push button</description>
+				<posx>0</posx>
+				<posy>210</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_moviesFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_movies.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>22</onup>
+				<ondown>24</ondown>
+			</control>
+			<control type="button" id="24">
+				<description>TV Shows push button</description>
+				<posx>0</posx>
+				<posy>280</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_TVFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_TV.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>23</onup>
+				<ondown>25</ondown>
+			</control>
+			<control type="button" id="25">
+				<description>Music push button</description>
+				<posx>0</posx>
+				<posy>350</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Music)</onclick>
+				<texturefocus border="5">ezee/icon_musicFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_music.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>24</onup>
+				<ondown>26</ondown>
+			</control>
+			<control type="button" id="26">
+				<description>Streams push button</description>
+				<posx>0</posx>
+				<posy>420</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_streamsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_streams.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>25</onup>
+				<ondown>27</ondown>
+			</control>
+			<control type="button" id="27">
+				<description>Settings push button</description>
+				<posx>0</posx>
+				<posy>490</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_settingsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_settings.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>105</onright>
+				<onup>26</onup>
+				<ondown>20</ondown>
+			</control>
+		</control>		
+	</include>
+	<include name="LibraryHeader">
+		<!-- heading label-->
+		<control type="label" id="50">
+    	    <description>My First label</description>
+        	<posx>500</posx>
+	        <posy>60</posy>
+    	    <width>750</width>
+			<height>35</height>    	    
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Album Name</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>font12</font>
+	        <textcolor>ffffffff</textcolor>
+    	    <shadowcolor>ff000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>				
+	</include>
+</includes>

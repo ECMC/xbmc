@@ -1,0 +1,25 @@
+<includes>
+	<include name="LibraryHeader">
+		<!-- heading label-->
+		<control type="label" id="50">
+    	    <description>My First label</description>
+        	<posx>500</posx>
+	        <posy>60</posy>
+    	    <width>750</width>
+			<height>35</height>    	    
+        	<visible>true</visible>
+	        <align>left</align>
+    	    <aligny>center</aligny>
+        	<scroll>false</scroll>
+	        <label>Album Name</label>
+        	<number></number>
+    	    <haspath>false</haspath>
+        	<font>font12</font>
+	        <textcolor>ffffffff</textcolor>
+    	    <shadowcolor>ff000000</shadowcolor>
+        	<wrapmultiline>false</wrapmultiline>
+	        <scrollspeed>50</scrollspeed>
+    	    <scrollsuffix> - </scrollsuffix>
+		  </control>				
+	</include>
+</includes>

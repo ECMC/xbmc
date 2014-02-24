@@ -1,0 +1,634 @@
+<window id="1234" type="window">
+	<defaultcontrol always="true">20</defaultcontrol>
+	<allowoverlay>no</allowoverlay>	
+	<onunload condition="Container(10).Hasfocus(20) | Container(10).Hasfocus(21) | ControlGroup(20).HasFocus | ControlGroup(21).HasFocus | ControlGroup(22).HasFocus | ControlGroup(23).HasFocus">SetProperty(VideosDirectLink,True)</onunload>
+	<onunload condition="Control.HasFocus(10) + Container(10).Hasfocus(20)">ClearProperty(VideosDirectLink)</onunload>  
+
+	<controls>
+		<include>CommonBackground</include>
+		<control type="image">
+			<description>LOGO</description>
+			<posx>61</posx>
+			<posy>49</posy>
+			<width>60</width>
+			<height>59</height>
+			<aspectratio aligny="top" align="left">keep</aspectratio>
+			<texture>ezee/ezee_logo.png</texture>
+			<include>VisibleFadeEffect</include>
+			<include>Window_OpenClose_Animation</include>
+			<visible>!Skin.HasSetting(homepageWeatherinfo)</visible>
+		</control>
+			<control type="radiobutton" id="19">
+				<description>Global Search</description>
+				<posx>171</posx>
+				<posy>60</posy>
+				<height>35</height>
+				<width>250</width>
+				<textwidth>150</textwidth>
+				<textoffsetx>10</textoffsetx>
+				<align>left</align>
+				<aligny>center</aligny>
+				<font>font12</font>
+				<textcolor>grey2</textcolor>
+				<focusedcolor>white</focusedcolor>
+				<texturefocus flipy="true" border="5">HomeSubFO.png</texturefocus>
+				<texturenofocus flipy="true" border="5">HomeSubNF.png</texturenofocus>
+				<pulseonselect>false</pulseonselect>
+				<label>137</label>
+				<onclick>RunScript(script.globalsearch)</onclick>
+				<textureradiofocus>icon_search.png</textureradiofocus>
+				<textureradionofocus>icon_search.png</textureradionofocus>
+				<onleft>20</onleft>
+				<onright>20</onright>
+				<onup>20</onup>
+				<ondown>20</ondown>
+				<visible>System.HasAddon(script.globalsearch)</visible>
+                <visible>!Container(9000).Hasfocus(4) + !Skin.HasSetting(HomepageHideRecentlyAddedPicture)</visible>
+			</control> 		
+		<!-- main menu buttons -->
+		<control type="group" id="10">
+			<posx>52</posx>
+			<posy>145</posy>
+			<include>Window_OpenClose_Animation</include>
+			<control type="button" id="20">
+				<description>Photos push button</description>
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+                <onclick>ActivateWindow(Videos,library://video/comedy/titles.xml/,return)</onclick>                                                        
+				<texturefocus border="5">ezee/icon_photosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_photos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>27</onup>
+				<ondown>21</ondown>
+			</control>
+			<control type="button" id="21">
+				<description>Videos push button</description>
+				<posx>0</posx>
+				<posy>70</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(10025,videodb://1/7/,return)</onclick>
+				<texturefocus border="5">ezee/icon_videosFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_videos.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>20</onup>
+				<ondown>22</ondown>
+			</control>
+			<control type="button" id="22">
+				<description>Contacts push button</description>
+				<posx>0</posx>
+				<posy>140</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(ShutdownMenu)</onclick>
+				<texturefocus border="5">ezee/icon_contactsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_contacts.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>21</onup>
+				<ondown>23</ondown>
+			</control>
+			<control type="button" id="23">
+				<description>Movies push button</description>
+				<posx>0</posx>
+				<posy>210</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_moviesFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_movies.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>22</onup>
+				<ondown>24</ondown>
+			</control>
+			<control type="button" id="24">
+				<description>TV Shows push button</description>
+				<posx>0</posx>
+				<posy>280</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>31003</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,TVShowTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_TVFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_TV.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>23</onup>
+				<ondown>25</ondown>
+			</control>
+			<control type="button" id="25">
+				<description>Music push button</description>
+				<posx>0</posx>
+				<posy>350</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Music)</onclick>
+				<texturefocus border="5">ezee/icon_musicFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_music.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>24</onup>
+				<ondown>26</ondown>
+			</control>
+			<control type="button" id="26">
+				<description>Streams push button</description>
+				<posx>0</posx>
+				<posy>420</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_streamsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_streams.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>25</onup>
+				<ondown>27</ondown>
+			</control>
+			<control type="button" id="27">
+				<description>Settings push button</description>
+				<posx>0</posx>
+				<posy>490</posy>
+				<width>60</width>
+				<height>60</height>
+				<label>1036</label>
+				<font>-</font>
+				<aligny>-</aligny>
+				<onclick>ActivateWindow(Videos,MovieTitles,return)</onclick>
+				<texturefocus border="5">ezee/icon_settingsFO.png</texturefocus>
+				<texturenofocus border="5">ezee/icon_settings.png</texturenofocus>
+				<onleft>19</onleft>
+				<onright>50</onright>
+				<onup>26</onup>
+				<ondown>20</ondown>
+			</control>
+		</control>		
+		<!-- main menu -->
+		<control type="group">
+			<posx>171</posx>
+			<posy>145</posy>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300" />
+				<effect type="fade" start="0" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+			<control type="list" id="50">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>255</width>
+				<height>545</height>
+				<onleft>20</onleft>
+				<onright>9001</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+		        <viewtype label="3D list">list</viewtype>
+		        <orientation>vertical</orientation>
+		        <pagecontrol>25</pagecontrol>
+		        <focusposition>0</focusposition>
+      			<scrolltime tween="sine" easing="out">200</scrolltime>
+      				<itemlayout height="45" width="255">
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>45</width>
+						<height>45</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>      				
+					<control type="label">
+						<posx>55</posx>
+						<posy>0</posy>
+						<aligny>top</aligny>
+						<font>list_item</font>
+						<textcolor>grey3</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</itemlayout>
+				<focusedlayout height="45" width="255">
+					<control type="image">
+						<width>255</width>
+						<height>45</height>
+						<posx>0</posx>
+						<posy>0</posy>
+						<visible>Control.HasFocus(50)</visible>
+						<texture>ezee/MenuItemFO.png</texture>
+					</control>
+					<control type="image">
+						<posx>0</posx>
+						<posy>0</posy>
+						<width>45</width>
+						<height>45</height>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+						<info>ListItem.Icon</info>
+					</control>
+					<control type="label">
+						<posx>55</posx>
+						<posy>0</posy>
+						<font>list_item</font>
+						<textcolor>white</textcolor>
+						<align>left</align>
+						<aligny>center</aligny>
+						<label>$INFO[ListItem.Label]</label>
+					</control>
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label>A</label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+				</content>
+			</control>
+		</control>
+		<!-- thumbnail view-->
+		<control type="group">
+			<posx>500</posx>
+			<posy>145</posy>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300" />
+				<effect type="fade" start="0" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+			<control type="panel" id="52">
+	<posx>190</posx>
+	<posy>100</posy>
+	<width>485</width>
+	<height>425</height>
+	<onleft>9000</onleft>
+	<onright>60</onright>
+	<onup>52</onup>
+	<ondown>52</ondown>
+	<scrolltime tween="sine" easing="out">200</scrolltime>
+	<viewtype label="536">icon</viewtype>
+	<pagecontrol>60</pagecontrol>
+	<include>contentpanelslide</include>
+	<itemlayout height="140" width="140">
+		<control type="image">
+			<posx>1</posx>
+			<posy>1</posy>
+			<width>140</width>
+			<height>140</height>
+			<info>ListItem.Icon</info>
+			<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+		</control>
+		<control type="image">
+			<posx>80</posx>
+			<posy>75</posy>
+			<width>32</width>
+			<height>32</height>
+			<info>ListItem.Overlay</info>
+		</control>
+		<control type="label">
+			<posx>60</posx>
+			<posy>115</posy>
+			<width>110</width>
+			<height>22</height>
+			<font>font13</font>
+			<selectedcolor>green</selectedcolor>
+			<align>center</align>
+			<info>ListItem.Label</info>
+		</control>
+	</itemlayout>
+	<focusedlayout height="144" width="144">
+		<control type="image">
+			<width>142</width>
+			<height>142</height>
+			<posx>0</posx>
+			<posy>0</posy>
+			<texture>folder-focus.png</texture>
+			<animation effect="zoom" end="0,0,120,120" time="100">focus</animation>
+			<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+		</control>
+		<control type="image">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>142</width>
+			<height>142</height>
+			<info>ListItem.Icon</info>
+			<animation effect="zoom" end="5,5,110,110" time="100">focus</animation>
+			<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+		</control>
+		<control type="image">
+			<posx>80</posx>
+			<posy>75</posy>
+			<width>32</width>
+			<height>32</height>
+			<info>ListItem.Overlay</info>
+			<animation effect="slide" end="5,5" time="100">focus</animation>
+		</control>
+		<control type="label">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>900</width>
+				<height>545</height>
+			<font>font13</font>
+			<selectedcolor>green</selectedcolor>
+			<align>center</align>
+			<info>ListItem.Label</info>
+		</control>
+	</focusedlayout>
+					<content>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+				</content>
+</control>
+			<!--
+			<control type="panel" id="90">
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>900</width>
+				<height>545</height>
+				<onleft>20</onleft>
+				<onright>9001</onright>
+				<onup>9000</onup>
+				<ondown>9000</ondown>
+		        <pagecontrol>25</pagecontrol>
+		        <focusposition>0</focusposition>
+      			<scrolltime tween="sine" easing="out">200</scrolltime>
+				<viewtype label="536">icon</viewtype>
+				<include>contentpanelslide</include>
+      			<itemlayout height="145" width="900">
+					<control type="image">
+						<posx>1</posx>
+						<posy>1</posy>
+						<width>140</width>
+						<height>140</height>
+						<info>ListItem.Icon</info>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>      				
+				</itemlayout>
+				<focusedlayout height="145" width="900">
+					<control type="image">
+						<width>142</width>
+						<height>142</height>
+						<posx>0</posx>
+						<posy>0</posy>
+						<visible>Control.HasFocus(50)</visible>
+						<texture>ezee/white_dot.png</texture>
+					</control>
+					<control type="image">
+						<posx>1</posx>
+						<posy>1</posy>
+						<width>140</width>
+						<height>140</height>
+						<info>ListItem.Icon</info>
+						<aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+					</control>      				
+				</focusedlayout>
+				<content>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20130526_131154.jpg</icon>
+						<thumb>ezee/P_20131012_170456.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+					<item id="1">
+						<label></label>
+						<onclick>ActivateWindow(AppearanceSettings)</onclick>
+						<icon>ezee/P_20131012_170456.jpg</icon>
+						<thumb>ezee/P_20130526_131154.jpg</thumb>
+					</item>
+				</content>
+			</control>
+			-->
+            <control type="list" id="50">
+                <posx>50</posx>
+                <posy>100</posy>
+                <width>700</width>
+                <height>495</height>
+                <onup>4</onup>
+                <onleft>30</onleft>
+                <onright>60</onright>
+                <ondown>4</ondown>
+                <pagecontrol>60</pagecontrol>
+                <scrolltime>200</scrolltime>
+                <itemlayout height="45">
+                    <control type="image" id="5">
+                        <posx>8</posx>
+                        <posy>8</posy>
+                        <width>24</width>
+                        <height>24</height>
+                        <texture>radiobutton-nofocus.png</texture>
+                        <visible>StringCompare(ListItem.Property(enabled),0)</visible>
+                    </control>
+                    <control type="image" id="6">
+                        <posx>8</posx>
+                        <posy>8</posy>
+                        <width>24</width>
+                        <height>24</height>
+                        <texture>radiobutton-focus.png</texture>
+                        <visible>StringCompare(ListItem.Property(enabled),1)</visible>
+                    </control>
+                    <control type="image"  id="7">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>700</width>
+                        <height>40</height>
+                        <texture border="5">button-nofocus.png</texture>
+                    </control>
+                    <control type="label"  id="8">
+                        <posx>40</posx>
+                        <posy>0</posy>
+                        <width>660</width>
+                        <height>40</height>
+                        <font>font13</font>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <textcolor>grey2</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <info>ListItem.Label</info>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="45">
+                    <control type="image"  id="5">
+                        <posx>8</posx>
+                        <posy>8</posy>
+                        <width>24</width>
+                        <height>24</height>
+                        <texture>radiobutton-nofocus.png</texture>
+                        <visible>StringCompare(ListItem.Property(enabled),0)</visible>
+                    </control>
+                    <control type="image" id="6">
+                        <posx>8</posx>
+                        <posy>8</posy>
+                        <width>24</width>
+                        <height>24</height>
+                        <texture>radiobutton-focus.png</texture>
+                        <visible>StringCompare(ListItem.Property(enabled),1)</visible>
+                    </control>
+                    <control type="image" id="7">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>700</width>
+                        <height>40</height>
+                        <texture border="5">button-focus2.png</texture>
+                    </control>
+                    <control type="label" id="8">
+                        <posx>40</posx>
+                        <posy>0</posy>
+                        <width>660</width>
+                        <height>40</height>
+                        <font>font13</font>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <textcolor>white</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <info>ListItem.Label</info>
+                    </control>
+                </focusedlayout>
+            </control>			
+		</control>
+
+	</controls>
+</window>
